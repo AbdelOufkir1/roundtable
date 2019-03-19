@@ -1,0 +1,19 @@
+{
+  "name": "roundtable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdul Oufkir",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "coveralls": "^3.0.3",
+    "express": "^4.16.4",
+    "jest": "^24.5.0",
+    "nodemon": "^1.18.10",
+    "pg-promise": "^8.6.3"
+  }
+}
