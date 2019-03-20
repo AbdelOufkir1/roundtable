@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "write-coveralls": "rm -rf .coveralls.yml && echo \"repo_token:$COVERAGE_TOKEN\" >> .coveralls.yml"
+    "write-coveralls": "rm -rf .coveralls.yml && echo \"repo_token:$CODE_COVERAGE_TOKEN\" >> .coveralls.yml"
   },
   "author": "Abdul Oufkir",
   "license": "ISC",

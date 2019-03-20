@@ -12,7 +12,7 @@ test('when making GET request to /ping we expect {"msg":"pong"}', done => {
             expect(response.body).toEqual({"msg": "pong"})
             done() 
         })
-        .catch(err => {
+        .catch(error=> {
             done();
         })
 })   
