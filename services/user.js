@@ -29,6 +29,16 @@ userServices.removeSupporter = (id, supporterId) => {
     return db.none(`DELETE FROM supporters WHERE user_id =${id} AND id=${supporterId}`)
 }
 
+userServices.addDebater = (id, debaterId) => {
+    return db.none(`INSERT INTO debaters (user_id, id) VALUES (${id}, ${debaterId}) `)
+}
+
+userServices.getDebaters = (id) => {
+    return db.many(`SELECT (id) FROM debaters WHERE user_id =${id} `)
+}
+
+
+
 
 module.exports = { userServices };
 
