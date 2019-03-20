@@ -110,7 +110,7 @@ userRouter.get('/:id/supporters', (req, res) => {
             res.status(200)
             res.json(data)
         })
-        .catch(err => {
+        .catch(err =>{
             res.status(400)
             res.json(err.toString())
         })

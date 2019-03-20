@@ -22,7 +22,8 @@ userServices.addSupporter = (id, supporterId) => {
 }
 
 userServices.getSupporters = (id) => {
-    return db.many(`SELECT (id) FROM supporters WHERE user_id =${id} `)
+    return db.many(`SELECT s.id, * FROM supporters s JOIN users u ON s.id = u.id WHERE s.user_id = ${id};
+    `)
 }
 
 userServices.removeSupporter = (id, supporterId) => {
@@ -34,9 +35,12 @@ userServices.addDebater = (id, debaterId) => {
 }
 
 userServices.getDebaters = (id) => {
-    return db.many(`SELECT (id) FROM debaters WHERE user_id =${id} `)
+    return db.many(`SELECT d.id, * FROM debaters d JOIN users u ON d.id = u.id WHERE d.user_id = ${id}`);
 }
 
+userServices.removeDebater = (id, debaterId) => {
+    return db.none(`DELETE FROM debaters WHERE user_id=${id} AND id=${debaterId}`)
+}
 
 
 
