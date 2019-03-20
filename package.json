@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "write-coveralls": "rm -rf .coveralls.yml && echo \"repo_token:$COVERAGE_TOKEN\" >> .coveralls.yml"
   },
   "author": "Abdul Oufkir",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "coveralls": "^3.0.3",
     "express": "^4.16.4",
+    "pg-promise": "^8.6.3"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.3",
     "jest": "^24.5.0",
     "nodemon": "^1.18.10",
-    "pg-promise": "^8.6.3"
+    "supertest": "^4.0.2"
   }
 }
