@@ -12,7 +12,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "pg-promise": "^8.6.3"
+    "pg-promise": "^8.6.3",
+    "travis": "^0.1.1"
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
