@@ -5,6 +5,10 @@ userServices.createUser = (name, password, email) => {
     return db.none(`INSERT INTO users (name, password, email) VALUES ( '${name}', '${password}', '${email}' )`)
 }
 
+userServices.getAllUsers = (arg) => {
+    return db.many(`SELECT * FROM users`)
+}
+
 userServices.getUser = (id) => {
     return db.one(`SELECT * FROM users WHERE users.id = ${id}`)
 }
@@ -41,7 +45,6 @@ userServices.getDebaters = (id) => {
 userServices.removeDebater = (id, debaterId) => {
     return db.none(`DELETE FROM debaters WHERE user_id=${id} AND id=${debaterId}`)
 }
-
 
 
 module.exports = { userServices };

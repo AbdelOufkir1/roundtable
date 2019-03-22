@@ -9,6 +9,19 @@ userRouter.get('/ping', (req, res) => {
     })
 })
 
+userRouter.get('/allusers', (req, res) => {
+    console.log('IN GET ALL USERS')
+    userServices.getAllUsers(arg)
+        .then(data => {
+            res.status(200);
+            res.json(data)
+        })
+        .catch(err =>{
+            res.status(400);
+            res.json(err.toString())
+        })
+})
+
 userRouter.post('/', (req, res) => {
 
     const { name, password, email, bio } = req.body;
@@ -82,7 +95,6 @@ userRouter.delete('/:name', (req, res) => {
             res.json(err.toString())
         })
 })
-
 
 userRouter.post('/:id/addSupporter', (req,res) => {
     const { id } = req.params;
