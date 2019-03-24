@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS roundtable;
 CREATE DATABASE roundtable;
 
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name VARCHAR UNIQUE NOT NULL,
@@ -15,21 +16,22 @@ CREATE TABLE users (
 
 CREATE TABLE supporters (
     user_id INT REFERENCES users(id) NOT NULL,
-    id INT REFERENCES users(id) NOT NULL,   
-    name VARCHAR UNIQUE NOT NULL
+    id INT REFERENCES users(id) NOT NULL
 );
 
 CREATE TABLE debaters (
     user_id INT REFERENCES users(id) NOT NULL,
-    id INT REFERENCES users(id) NOT NULL,
-    name VARCHAR UNIQUE NOT NULL
+    id INT REFERENCES users(id) NOT NULL
 );
+
 
 CREATE TABlE posts (
     id SERIAL PRIMARY KEY,
+    debate_id INT REFERENCES debate(id) NOT NULL,
     user_id INT REFERENCES users(id) NOT NULL,
     title VARCHAR NUll,
-    body VARCHAR NULL
+    body VARCHAR NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE category (
@@ -45,13 +47,21 @@ CREATE TABLE debate (
     description VARCHAR NOT NULL,
     category INT REFERENCES category(id) NOT NULL,
     rules VARCHAR NOT NULL,
-    followers INT NULL,
+    numFollowers INT NULL,
+    debate_status boolean,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE followers (
+    debate_id INT REFERENCES debate(id) NOT NULL,
+    user_id INT REFERENCES users(id) NOT NULL,
+    followed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE discussions (
     id SERIAL PRIMARY KEY,
     debate_id INT REFERENCES debate(id) NOT NULL,
+    user_id INT REFERENCES users(id) NOT NULL,
     title VARCHAR NULL,
     body VARCHAR NULL
 );
