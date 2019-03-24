@@ -11,7 +11,7 @@ userRouter.get('/ping', (req, res) => {
 
 userRouter.get('/allusers', (req, res) => {
     console.log('IN GET ALL USERS')
-    userServices.getAllUsers(arg)
+    userServices.getAllUsers()
         .then(data => {
             res.status(200);
             res.json(data)
@@ -89,92 +89,6 @@ userRouter.delete('/:name', (req, res) => {
             res.json({
                 "success": `user named ${name} has been deleted`
             })
-        })
-        .catch(err => {
-            res.status(400)
-            res.json(err.toString())
-        })
-})
-
-userRouter.post('/:id/addSupporter', (req,res) => {
-    const { id } = req.params;
-    const { supporterId } = req.body;
-
-    userServices.addSupporter(id, supporterId)
-        .then(() => {
-            res.status(200)
-            res.json({
-                "success": `supporter has been added`
-            })
-        })
-        .catch(err => {
-            res.status(400)
-            res.json(err.toString())
-        })
-})
-
-userRouter.get('/:id/supporters', (req, res) => {
-
-    const {id} = req.params;
-
-    userServices.getSupporters(id)
-        .then(data => {
-            res.status(200)
-            res.json(data)
-        })
-        .catch(err =>{
-            res.status(400)
-            res.json(err.toString())
-        })
-})
-
-userRouter.delete('/:id/removeSupporter', (req, res) => {
-
-    const { id } = req.params;
-    const { supporterId } = req.body;
-    
-    userServices.removeSupporter(id, supporterId)
-        .then(() => {
-            res.status(200)
-            res.json({
-                "success" : "supporter has been removed"
-            })
-        } , err => {
-            console.log(err)
-            res.status(400)
-            res.json(err.toString)
-        })
-        .catch((err) => {
-            res.status(400)
-            res.json(err.toString())
-        })
-})
-
-userRouter.post('/:id/addDebater', (req,res) => {
-    const { id } = req.params;
-    const { debaterId } = req.body;
-
-    userServices.addDebater(id, debaterId)
-        .then(() => {
-            res.status(200)
-            res.json({
-                "success": `debater has been added`
-            })
-        })
-        .catch(err => {
-            res.status(400)
-            res.json(err.toString())
-        })
-})
-
-userRouter.get('/:id/debaters', (req, res) => {
-
-    const {id} = req.params;
-
-    userServices.getDebaters(id)
-        .then(data => {
-            res.status(200)
-            res.json(data)
         })
         .catch(err => {
             res.status(400)
