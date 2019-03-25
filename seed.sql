@@ -23,6 +23,24 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE category (
+    id SERIAL PRIMARY KEY,
+    type VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE debate (
+    id SERIAL PRIMARY KEY,
+    first_debater INT REFERENCES users(id) NOT NULL,
+    second_debater INT REFERENCES users(id) NOT NULL,
+    title VARCHAR NOT NULl,
+    description VARCHAR NOT NULL,
+    category INT REFERENCES category(id) NOT NULL,
+    rules VARCHAR NOT NULL,
+    numFollowers INT NULL,
+    debate_status boolean,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE supporters (
     user_id INT REFERENCES users(id) NOT NULL,
     id INT REFERENCES users(id) NOT NULL
@@ -40,24 +58,6 @@ CREATE TABlE posts (
     user_id INT REFERENCES users(id) NOT NULL,
     title VARCHAR NUll,
     body VARCHAR NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE category (
-    id SERIAL PRIMARY KEY,
-    type VARCHAR UNIQUE NOT NULL
-);
-
-CREATE TABLE debate (
-    id SERIAL PRIMARY KEY,
-    first_debater INT REFERENCES users(id) NOT NULL,
-    second_debater INT REFERENCES users(id) NOT NULL,
-    title VARCHAR NOT NULl,
-    description VARCHAR NOT NULL,
-    category INT REFERENCES category(id) NOT NULL,
-    rules VARCHAR NOT NULL,
-    numFollowers INT NULL,
-    debate_status boolean,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
