@@ -6,7 +6,7 @@ const getDB = () => {
         if (db) return db;
 
         pgp = require('pg-promise')({});
-        db = pgp({
+        db = pgp( process.env.DATABASE_URL || {
             host: 'localhost',
             port: 5432,
             database: 'roundtable',

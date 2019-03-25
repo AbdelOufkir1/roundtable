@@ -32,11 +32,11 @@ userRouter.post('/', (req, res) => {
             res.json({
                 'success': `user named ${name} was successfully created`
             })
+        })
             .catch(err => {
                 res.status(400)
                 res.json(err.toString())
-            })
-    })
+      })
 })
 
 userRouter.get('/:id', (req, res) => {
