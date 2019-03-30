@@ -11,7 +11,21 @@ debateServices.getDebate = (d_id) => {
 }
 
 debateServices.getAllDebates = () => {
-    return db.many(`SELECT * FROM debate`)
+    return db.many(`select
+    debate.*,
+    u1.name AS user1_name,
+    u1.image AS user1_image,
+    u2.name AS user2_name,
+    u2.image AS user2_image
+    FROM debate 
+    JOIN users u1
+      ON 
+    debate.first_debater = u1.id 
+     JOIN 
+    users u2 
+      ON
+    debate.second_debater = u2.id;
+    `)
 }       
 
 
