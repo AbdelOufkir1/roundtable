@@ -1,12 +1,14 @@
 const bodyParser = require('body-parser');
 const app = require('express')();
+const cors = require('cors');
 const { userRouter } = require('./routes/user');
 const { supportersRouter } = require('./routes/supporters');
 const { debatersRouter } = require('./routes/debaters');
 const { debateRouter } = require('./routes/debate');
-const { postsRouter } = require('./routes/posts')
-const { discussionsRouter } = require('./routes/discussions')
+const { postsRouter } = require('./routes/posts');
+const { discussionsRouter } = require('./routes/discussions');
 
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
