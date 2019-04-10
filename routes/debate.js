@@ -10,16 +10,17 @@ debateRouter.get('/ping', (req, res) => {
 
 debateRouter.post('/', (req, res) => {
 
+    console.log('In debate route')
+
     const {first_debater ,second_debater, title, description, category, rules} = req.body;
 
     debateServices.createDebate(first_debater, second_debater, title, description, category, rules)
-        .then(() => {
+        .then((id) => {
             res.status(200)
-            res.json({
-                "msg" : `new debate titled ${title} created`
-            })
+            res.json(id)
         })
         .catch(err => {
+            console.log(err)
             res.status(400)
             res.json(err.toString())
         })
@@ -45,7 +46,7 @@ debateRouter.get('/all', (req,res) => {
 debateRouter.get('/:d_id', (req,res) => {
     const{d_id} = req.params;
 
-    console.log('in get Debate route')
+    console.log('in get Debate route', d_id)
     
     debateServices.getDebate(d_id)
         .then(data => {
@@ -53,6 +54,7 @@ debateRouter.get('/:d_id', (req,res) => {
             res.json(data)
         })
         .catch(err => {
+            console.log(err)
             res.status(400)
             res.json(err.toString())
         })
@@ -71,6 +73,7 @@ debateRouter.put('/:d_id', (req, res) => {
             })
         })
         .catch(err =>{
+            console.log(err)
             res.status(400)
             res.json(err.toString())
         })

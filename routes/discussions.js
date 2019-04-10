@@ -41,5 +41,20 @@ discussionsRouter.get('/:d_id/all', (req, res) => {
         })
 })
 
+discussionsRouter.get('/every', (req, res) => {
+
+    const {d_id} = req.params;
+
+    discussionsServices.getEveryDiscussion(d_id)
+        .then(data => {
+            res.status(200)
+            res.json(data)
+        })
+        .catch(err => {
+            res.status(400)
+            res.json(err.toString())
+        })
+})
+
 
 module.exports = {discussionsRouter }

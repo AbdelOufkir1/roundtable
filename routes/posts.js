@@ -59,6 +59,21 @@ postsRouter.get('/:d_id/all', (req, res) =>{
         })
 })
 
+postsRouter.get('/all', (req, res) =>{
+    
+    postsServices.getPosts()
+        .then(data => {
+            res.status(200)
+            res.json(data)
+        })
+        .catch(err=>{
+            console.log(err)
+            res.status(400)
+            res.json(err.toString())
+        })
+})
+
+
 postsRouter.put('/:d_id/edit', (req,res) => {
     const {d_id} = req.params;
     const {id, u_id, title, body} = req.body;

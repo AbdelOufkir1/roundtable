@@ -13,10 +13,10 @@ DROP TABLE IF EXISTS discussions CASCADE;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
+    firebase_uid VARCHAR NULL,
     name VARCHAR UNIQUE NOT NULL,
     email VARCHAR UNIQUE NOT NULL,
     image VARCHAR NULL,
-    password VARCHAR NULL,
     bio VARCHAR NULL,
     numSupporters INT NULL,
     numDebaters INT NULL,

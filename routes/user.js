@@ -24,9 +24,9 @@ userRouter.get('/allusers', (req, res) => {
 
 userRouter.post('/', (req, res) => {
 
-    const { name, password, email, bio } = req.body;
+    const { name, firebase_uid, email, image  } = req.body;
 
-    userServices.createUser(name, password, email, bio)
+    userServices.createUser(name, firebase_uid, email, image)
         .then(() => {
             res.status(200)
             res.json({
@@ -35,27 +35,46 @@ userRouter.post('/', (req, res) => {
         })
             .catch(err => {
                 res.status(400)
+                console.log(err)
                 res.json(err.toString())
       })
 })
 
-userRouter.get('/:id', (req, res) => {
+userRouter.get('/', (req, res) => {
     console.log("MADE IT TO get params")
 
-    const { id } = req.params;
+    const { fbuid } = req.query;
+    console.log("fbuid ", fbuid)
 
-    console.log('id is heeere: ', id)
-
-    userServices.getUser(id)
+    userServices.getUser(fbuid)
         .then((data) => {
             res.status(200)
             res.json(data)
         })
         .catch(err => {
+            console.log('error in get req: ', err)
             res.status(400)
             res.json(err)
         })
 })
+
+// userRouter.get('/:id', (req, res) => {
+//     console.log("MADE IT TO get params")
+
+//     const { id } = req.query;
+
+//     console.log('id is heeere: ', id)
+
+//     userServices.getUser(id)
+//         .then((data) => {
+//             res.status(200)
+//             res.json(data)
+//         })
+//         .catch(err => {
+//             res.status(400)
+//             res.json(err)
+//         })
+// })
 
 userRouter.put('/:id', (req, res) => {
 
