@@ -58,23 +58,23 @@ userRouter.get('/', (req, res) => {
         })
 })
 
-// userRouter.get('/:id', (req, res) => {
-//     console.log("MADE IT TO get params")
+userRouter.get('/:id', (req, res) => {
+    console.log("MADE IT TO get params")
 
-//     const { id } = req.query;
+    const { id } = req.query;
 
-//     console.log('id is heeere: ', id)
+    console.log('id is heeere: ', id)
 
-//     userServices.getUser(id)
-//         .then((data) => {
-//             res.status(200)
-//             res.json(data)
-//         })
-//         .catch(err => {
-//             res.status(400)
-//             res.json(err)
-//         })
-// })
+    userServices.getUser(id)
+        .then((data) => {
+            res.status(200)
+            res.json(data)
+        })
+        .catch(err => {
+            res.status(400)
+            res.json(err)
+        })
+})
 
 userRouter.put('/:id', (req, res) => {
 
