@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "write-coveralls": "rm -rf .coveralls.yml && echo \"repo_token:$CODE_COVERAGE_TOKEN\" >> .coveralls.yml"
+    "write-coveralls": "rm -rf .coveralls.yml && echo \"repo_token:$CODE_COVERAGE_TOKEN\" >> .coveralls.yml",
+    "prettier": "prettier --write \"{,!(node_modules)/**/}*.js\""
   },
   "author": "Abdul Oufkir",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "pg-promise": "^8.6.3",
+    "prettier": "^1.17.0",
     "travis": "^0.1.1"
   },
   "devDependencies": {

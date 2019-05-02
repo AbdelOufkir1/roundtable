@@ -1,21 +1,23 @@
 const getDB = () => {
-    let pgp = null;
-    let db = null;
+  let pgp = null;
+  let db = null;
 
-    return function() {
-        if (db) return db;
+  return function() {
+    if (db) return db;
 
-        pgp = require('pg-promise')({});
-        db = pgp( process.env.DATABASE_URL || {
-            host: 'localhost',
-            port: 5432,
-            database: 'roundtable',
-            user: 'postgres',
-            password: 987,
-        })
+    pgp = require("pg-promise")({});
+    db = pgp(
+      process.env.DATABASE_URL || {
+        host: "localhost",
+        port: 5432,
+        database: "roundtable",
+        user: "postgres",
+        password: 987
+      }
+    );
 
-        return db;
-    }
-}
+    return db;
+  };
+};
 
 module.exports = getDB();
