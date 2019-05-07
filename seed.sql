@@ -20,6 +20,8 @@ CREATE TABLE users (
     bio VARCHAR NULL,
     numSupporters INT NULL,
     numDebaters INT NULL,
+    supporting INT REFERENCES users(id) Null,
+    -- following INT REFERENCES debate(id) Null,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -37,7 +39,6 @@ CREATE TABLE debate (
     category INT REFERENCES category(id) NOT NULL,
     rules VARCHAR NOT NULL,
     numFollowers INT NULL,
-    debate_status boolean,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -56,8 +57,7 @@ CREATE TABlE posts (
     id SERIAL PRIMARY KEY,
     debate_id INT REFERENCES debate(id) NOT NULL,
     user_id INT REFERENCES users(id) NOT NULL,
-    title VARCHAR NUll,
-    body VARCHAR NULL,
+    text VARCHAR NUll,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -73,4 +73,10 @@ CREATE TABLE discussions (
     user_id INT REFERENCES users(id) NOT NULL,
     title VARCHAR NULL,
     body VARCHAR NULL
+);
+
+CREATE TABLE debateFollower (
+    id SERIAL PRIMARY KEY,
+    debate_id INT REFERENCES debate(id) NOT NULL,
+    user_id INT REFERENCES users(id) NOT NULL
 );
