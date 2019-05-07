@@ -42,7 +42,6 @@ debateRouter.post("/", (req, res) => {
 
 debateRouter.get("/:did/followers", (req, res) => {
   const { did } = req.params;
-  // console.log("in get followers");
 
   debateServices
     .getFollowers(did)
@@ -61,13 +60,11 @@ debateRouter.get("/getfollow", (req, res) => {
   debateServices
     .countfollowers()
     .then(data => {
-      console.log("data from countfollow: ", data);
       res.status(200);
       res.json(data);
     })
     .catch(err => {
-      console.log("err in get follow: ", err);
-      res.statu(400);
+      res.status(400);
       res.json(err);
     });
 });
@@ -81,7 +78,7 @@ debateRouter.get("/all", (req, res) => {
     })
     .catch(err => {
       res.status(400);
-      res.json(err.toString());
+      res.json(err);
     });
 });
 
@@ -115,7 +112,7 @@ debateRouter.get("/:d_id", (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(400);
-      res.json(err.toString());
+      res.json(err);
     });
 });
 
