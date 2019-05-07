@@ -9,7 +9,6 @@ userRouter.get("/ping", (req, res) => {
 });
 
 userRouter.get("/allusers", (req, res) => {
-  // console.log("IN GET ALL USERS");
   userServices
     .getAllUsers()
     .then(data => {
@@ -24,7 +23,6 @@ userRouter.get("/allusers", (req, res) => {
 
 userRouter.post("/", (req, res) => {
   const { name, firebase_uid, email, image } = req.body;
-  // console.log("in post req: ", name, firebase_uid, email, image);
 
   userServices
     .createUser(name, firebase_uid, email, image)
@@ -41,10 +39,7 @@ userRouter.post("/", (req, res) => {
 });
 
 userRouter.get("/", (req, res) => {
-  // console.log("MADE IT TO get params")
-
   const { fbuid } = req.query;
-  // console.log("fbuid ", fbuid);
 
   userServices
     .getUser(fbuid)
@@ -61,11 +56,7 @@ userRouter.get("/", (req, res) => {
 });
 
 userRouter.get("/:id", (req, res) => {
-  // console.log("MADE IT TO get wit ID params");
-
   const { id } = req.params;
-
-  // console.log("id is heeere: ", id);
 
   userServices
     .getUserwID(id)
@@ -83,8 +74,6 @@ userRouter.get("/:id", (req, res) => {
 userRouter.put("/:id", (req, res) => {
   const { id } = req.params;
   const { name, email, bio, image } = req.body;
-  // console.log("name is : ", name);
-  // console.log("info: ", id, email, bio, image);
 
   userServices
     .updateUser(id, name, email, bio, image)
@@ -103,7 +92,6 @@ userRouter.put("/:id", (req, res) => {
 
 userRouter.delete("/:name", (req, res) => {
   const { name } = req.params;
-  // console.log(name);
 
   userServices
     .deleteUser(name)

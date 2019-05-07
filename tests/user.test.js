@@ -1,7 +1,6 @@
 const request = require("supertest");
 jest.mock("../services/user");
 const { app } = require("../app");
-const db = require("../services/db")();
 jest.mock("../services/db");
 const { userServices } = require("../services/user");
 
@@ -61,7 +60,7 @@ test("when making a POST request to /user/ with valid data we expect status(400)
 });
 
 test("when making GET request to /user/:id, if db query is successful, expect 200", done => {
-  userServices.getUser.mockImplementation(() => {
+  userServices.getUserwID.mockImplementation(() => {
     return Promise.resolve();
   });
   request(app)
@@ -73,7 +72,7 @@ test("when making GET request to /user/:id, if db query is successful, expect 20
 });
 
 test("when making GET request to /user/:id, if db query is NOT sucessful, expect 400", done => {
-  userServices.getUser.mockImplementation(() => {
+  userServices.getUserwID.mockImplementation(() => {
     return Promise.reject();
   });
   request(app)
